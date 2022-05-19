@@ -1,0 +1,22 @@
+{
+  "name": "nodeprojects",
+  "version": "1.0.0",
+  "description": "Backend de la aplicación Delivery \u001b[1;5D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[d",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "flutter",
+    "delivery",
+    "nodejs"
+  ],
+  "author": "Edgar Saenz",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "http": "^0.0.1-security",
+    "morgan": "^1.10.0"
+  }
+}
