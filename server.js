@@ -5,6 +5,10 @@ const server = http.createServer(app);
 const logger = require('morgan');
 const cors = require('cors');
 
+/* Rutas
+ */
+const users = require('./routes/usersRoutes');
+
 
 const port = process.env.PORT || 3000;
 app.use(logger('dev'));
@@ -19,21 +23,21 @@ app.disable('x-powered-by');
 
 app.set('port', port);
 
+/* Llamando a las rutas
+ */
+users(app);
+
 server.listen(3000, '192.168.100.168' || 'localhost', function(){
     console.log('Aplicación de NodeJS ' + port + ' Iniciada...')
 });
-
-app.get('/',(req, res) => {
-    res.send('Ruta raíz del backendd');
-});
-
-app.get('/test',(req, res) => {
-    res.send('Este es la ruta test');
-});
-
-
 //ERROR HANDLER 
 app.use((err,req,res,next) =>{
     console.log(err);
     res.status(err.status || 500).send(err, stack);
 } );
+
+module.exports = {
+    app:app,
+    server:server,
+
+}
