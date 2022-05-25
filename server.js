@@ -32,7 +32,7 @@ server.listen(3000, '192.168.100.168' || 'localhost', function(){
 });
 //ERROR HANDLER 
 app.use((err,req,res,next) =>{
-    console.log(err);
+    console.log('erro '+ err);
     res.status(err.status || 500).send(err, stack);
 } );
 
