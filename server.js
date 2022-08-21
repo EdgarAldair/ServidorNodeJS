@@ -30,6 +30,14 @@ users(app);
 server.listen(3000, '192.168.100.168' || 'localhost', function(){
     console.log('Aplicación de NodeJS ' + port + ' Iniciada...')
 });
+
+app.get('/',(req,res) =>{
+    res.send('Ruta raíz del backend');
+});
+
+app.get('/dev',(req,res) =>{
+    res.send('Ruta dev prueba Edgar Aldair Saenz Ignacio');
+});
 //ERROR HANDLER 
 app.use((err,req,res,next) =>{
     console.log('erro '+ err);

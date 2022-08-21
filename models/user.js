@@ -13,6 +13,25 @@ const crypto = require('crypto');
      return db.manyOrNone(sql);
  }
 
+ User.findById = (id, callback) =>{
+
+   const sql =`
+   SELECT 
+   id,
+   email,
+   name,
+   lastname,
+   phone,
+   image,
+   password,
+   session_token
+   FROM
+      users
+   WHERE
+      id = $1`
+   return db.oneOrNone(sql,id).then(user => {callback(null, user);})
+   }
+
  User.create = (user) => {
    const mypasswordHashed = crypto.createHash('md5').update(user.password).digest('hex');
    user.password = mypasswordHashed;
