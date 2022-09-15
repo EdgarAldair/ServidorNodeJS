@@ -32,11 +32,34 @@ const crypto = require('crypto');
    return db.oneOrNone(sql,id).then(user => {callback(null, user);})
    }
 
+   User.findByEmail = (email) => {
+      const sql = `
+      SELECT 
+         id,
+         email,
+         name,
+         lastname,
+         phone,
+         image,
+         password,
+         session_token
+      FROM
+         users
+      WHERE
+         email = $1
+         `
+         return db.oneOrNone(sql, email);
+   }
+
+
  User.create = (user) => {
    const mypasswordHashed = crypto.createHash('md5').update(user.password).digest('hex');
    user.password = mypasswordHashed;
 
-   const sql = `INSERT INTO users(email, name,
+   const sql = `INSERT INTO 
+   users(
+      email, 
+      name,
       lastname,
       phone,
       image,
@@ -58,5 +81,12 @@ const crypto = require('crypto');
    ]);
 
  }
+User.isPasswordMatched = (userPassword, hash) => {
+   const mypasswordHashed = crypto.createHash('md5').update(userPassword).digest('hex');
+   if(mypasswordHashed === hash){
+      return true;
 
+   }
+   return false;
+}
  module.exports = User;
